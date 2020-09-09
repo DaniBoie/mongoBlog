@@ -13,7 +13,7 @@ document.getElementById('submit').addEventListener('click', () => {
       <p>${response.data.text}</p>
       `
       document.getElementById('blogs').append(blogLi)
-      document.getElementById('makeBlog').innerText = ''
+      document.getElementById('makeBlog').value = ''
     })
     .catch(function (error) {
       console.log(error);
