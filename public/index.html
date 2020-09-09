@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>My Blog</h1>
+  <form id="userEntry">
+    <label for="name">Name:</label>
+    <input id="name" type="text">
+    <label for="username">Username: </label>
+    <input id="username" type="text">
+    <label for="email">Email: </label>
+    <input id="email" type="text">
+    <button id="submitUser">Submit user credentials!</button>
+  </form>
+
+  <form id="blogEntry" style="display: none;">
+    <label for="text">Write your blog</label>
+    <input id="makeBlog" type="text">
+    <button id="submit">Submit blog post</button>
+  </form>
+  <ul id="blogs"></ul>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+
+</html>
