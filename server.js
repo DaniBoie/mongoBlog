@@ -26,7 +26,7 @@ passport.use(new JWTStrategy({
 }, ({ id }, cb) => User.findById(id)
 .populate('Blogposts')
 .then(user => cb(null, user))
-.catch(err => cb(err)))
+.catch(err => cb(err))))
 
 app.use(require('./routes'))
 
