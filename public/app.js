@@ -1,6 +1,8 @@
+// Varibles used to check if someone is either logging in or creating an account
 let userId
 let loginId
 
+// Event listener to create a blogpost
 document.getElementById('submit').addEventListener('click', () => {
   event.preventDefault()
   axios.post('/api/blogposts', {
@@ -21,6 +23,7 @@ document.getElementById('submit').addEventListener('click', () => {
     });
 })
 
+// Event listener to create a new user
 document.getElementById('submitUser').addEventListener('click', () => {
   event.preventDefault()
   document.getElementById('blogEntry').style.display = ''
@@ -39,12 +42,12 @@ document.getElementById('submitUser').addEventListener('click', () => {
     });
 })
 
+// Event listener for client login
 document.getElementById('submitLogin').addEventListener('click', () => {
   event.preventDefault()
   axios.get('/api/users')
     .then(res => {
       res.data.forEach(element => {
-        // console.log(element.username)
         if (document.getElementById('oldUsername').value === element.username) {
           loginId = element._id
           element.Blogposts.forEach(element => {
@@ -60,7 +63,6 @@ document.getElementById('submitLogin').addEventListener('click', () => {
           document.getElementById('login').style.display = 'none'
         }
       });
-      console.log(res.data)
     })
     .catch(function (error) {
       console.log(error);
