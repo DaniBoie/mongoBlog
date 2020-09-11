@@ -24,6 +24,27 @@ router.post('/blogposts', passport.authenticate('jwt'), (req, res) => {
     .catch(err => console.log(err))
 })
 
+// OFFLINE functionality route
+router.post('/posts/bulk', passport.authenticate('jwt'), (req, res) => {
+  const posts = req.body.map(post => ({
+    ...post,
+    user: req.user._id
+  }))
+
+  Blogpost.create(posts)
+  .then(posts => {
+    const postsIds = posts.map(post => post._id)
+    User.findById(req.user._id)
+      .then(user => {
+        const allPosts = [...user.posts, ...postIds]
+        User.findByIdAndUpdate(req.user._id, {posts: allPosts})
+        .then(() => res.sendStatus(200))
+        .catch(err => console.log(err))
+      })
+
+    })
+  })
+
 // PUT one Blogpost
 router.put('/blogposts/:id', passport.authenticate('jwt'), (req, res) => {
   Blogpost.findByIdAndUpdate(req.params.id, req.body)
