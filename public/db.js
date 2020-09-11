@@ -4,7 +4,7 @@ const request = indexedDB.open('blog', 1)
 
 request.onupgradeneeded = event => {
   db = event.target.result
-  db.createObjectStore('pending')
+  db.createObjectStore('pending', {autoIncrement: true})
 }
 
 request.onsuccess = event => {
@@ -35,7 +35,8 @@ const checkDatabase = () => {
       fetch('/api/posts/bulk', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('user')}`
         },
         body: JSON.stringify(getAll.result)
       })

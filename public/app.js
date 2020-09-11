@@ -22,7 +22,7 @@ axios.get('/api/users/posts', {
   })
   .catch(err => {
     console.log(err)
-    window.location = '/auth.html'
+    // window.location = '/auth.html'
   })
 
 // Event listener to create a blogpost
